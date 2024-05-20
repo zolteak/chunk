@@ -1,22 +1,24 @@
-const chunk = (array, size) => {
-    let aT = [];
-    let aF = [];
+const chunk = (mass, size) => {
+    let temporaryMass = [];
+    let finalMass = [];
     let j = 0;
-    for(let i = 0; i < array.length; i += 1) {
-        aT[j] = array[i];
+    
+    for(let i = 0; i < mass.length; i += 1) {
+        temporaryMass[j] = mass[i];
+        
         if ((i + 1) % size === 0) {
-            aF.push(aT);
-            aT = [];
+            finalMass.push(temporaryMass);
+            temporaryMass = [];
         }
-        if (array.length % size !== 0 && i === array.length - 1) {
-            aF.push(aT);
+        if (mass.length % size !== 0 && i === mass.length - 1) {
+            finalMass.push(temporaryMass);
         }
         j = j + 1;
         if (j === size) {
             j = 0;
         }
     }
-    return aF;
+    return finalMass;
 };
 
 exports.chunk = chunk;
